@@ -156,7 +156,15 @@ def main():
 
     md_file = sys.argv[1]
     if not os.path.exists(md_file):
-        sys.exit(f'Error: File not found: {md_file}')
+        site_root = os.path.dirname(os.path.abspath(__file__))
+        candidates = [
+            os.path.join(site_root, md_file),
+            os.path.join(site_root, 'essay markdowns', md_file),
+        ]
+        found = next((p for p in candidates if os.path.exists(p)), None)
+        if not found:
+            sys.exit(f'Error: Could not find "{md_file}" in the site folder or "essay markdowns" folder.')
+        md_file = found
 
     with open(md_file, 'r', encoding='utf-8') as f:
         raw = f.read()

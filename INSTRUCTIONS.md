@@ -38,7 +38,16 @@ More writing.
 
 Then run from the site folder:
 ```bash
-python add_post.py path/to/your-essay.md
+python add_post.py your-essay.md
+```
+
+The script will find your file automatically if it's in:
+- The site folder (root)
+- The `essay markdowns` folder
+
+For files outside those locations, provide the full path:
+```bash
+python add_post.py "C:/Users/Behram/Desktop/your-essay.md"
 ```
 
 The script will:
